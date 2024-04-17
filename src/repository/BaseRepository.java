@@ -67,4 +67,8 @@ public T findById(UUID id) throws DataNotFoundException {
         return list;
     }
 
+    public ArrayList<T> getAll(){
+        return data;
+    }
+
 }

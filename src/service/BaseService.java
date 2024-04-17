@@ -36,4 +36,8 @@ public abstract class BaseService <T extends BaseModel,R extends BaseRepository<
         return null;
     }
 
+    public ArrayList<T> getAll(){
+        return repository.getAll();
+    }
+
 }
