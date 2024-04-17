@@ -3,12 +3,16 @@ package repository;
 import model.Order;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class OrderRepository extends BaseRepository<Order> {
-    private static final OrderRepository orderRepository = new OrderRepository();
+    private static  OrderRepository orderRepository = new OrderRepository();
 
     public static OrderRepository getInstance() {
+        if(Objects.isNull(orderRepository)){
+            orderRepository = new OrderRepository();
+        }
         return orderRepository;
     }
     private OrderRepository(){

@@ -60,4 +60,20 @@ public class UserRepository extends BaseRepository<User>{
         }
         return 0;
     }
+    public ArrayList<User> getAllUsers(){
+        ArrayList<User> users1 = new ArrayList<>();
+        for (User user : data) {
+            users1.add(user);
+        }
+        return users1;
+    }
+   public User signIn(String username,String password){
+       for (User user : data) {
+           if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+               return user;
+           }
+       }
+       return null;
+   }
+
 }
