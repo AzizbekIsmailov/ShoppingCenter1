@@ -17,6 +17,14 @@ public class User extends BaseModel{
         this.role = role;
     }
 
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
     public String getUsername() {
         return username;
     }
