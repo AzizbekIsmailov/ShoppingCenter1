@@ -1,5 +1,6 @@
 package service;
 
+import exception.DataNotFoundException;
 import model.BaseModel;
 import repository.BaseRepository;
 
@@ -25,7 +26,7 @@ public abstract class BaseService <T extends BaseModel,R extends BaseRepository<
         repository.update(id, list);
     }
 
-    public void findById(UUID id) {
+    public void findById(UUID id) throws DataNotFoundException {
         repository.findById(id);
     }
 

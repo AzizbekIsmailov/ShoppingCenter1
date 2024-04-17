@@ -1,5 +1,6 @@
 package repository;
 
+import exception.DataNotFoundException;
 import model.BaseModel;
 
 import java.util.ArrayList;
@@ -36,15 +37,23 @@ public abstract class BaseRepository<T extends BaseModel> {
     }
 
 
-    public Optional<T> findById(UUID id) {
-        for (T t : data) {
-            if (Objects.equals(t.getId(), id)){
-                return Optional.of(t);
-            }
+//    public Optional<T> findById(UUID id) {
+//        for (T t : data) {
+//            if (Objects.equals(t.getId(), id)){
+//                return Optional.of(t);
+//            }
+//        }
+//        return Optional.empty();
+//    }
+public T findById(UUID id) throws DataNotFoundException {
+    for (T t : data) {
+        if (t.getId().equals(id)) {
+            return t;
         }
-
-        return Optional.empty();
     }
+    throw new DataNotFoundException("Cannot find data with id : " + id);
+}
+
 
 
     public ArrayList<T> getActives(){

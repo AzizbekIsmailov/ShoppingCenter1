@@ -17,7 +17,7 @@ public class UserService extends BaseService<User, UserRepository> {
     public UserService() {
         super(UserRepository.getInstance());
     }
-    public Optional<User> findByUsername(String username){
+    public Optional<User> findByUsername(String username) {
         return repository.findByUsername(username);
     }
 
