@@ -1,12 +1,14 @@
 package controller;
 
 
+import enumerators.UserRole;
 import model.Category;
 import model.User;
 import service.CategoryService;
 import service.OrderService;
 import service.ProductService;
 import service.UserService;
+import utils.Messages;
 
 import java.util.Scanner;
 
@@ -20,6 +22,9 @@ public class Main {
     public static OrderService orderService = OrderService.getInstance();
     public static CategoryService categoryService = CategoryService.getInstance();
     public static void main(String[] args) {
+        userService.add(new User("123","123",10000, UserRole.ADMIN));
+        userService.add(new User("qwe","qwe",150000,UserRole.USER));
+        userService.add(new User("asd","asd",200000,UserRole.USER));
 
         mainMenu();
 
@@ -94,6 +99,28 @@ public class Main {
                     System.out.println("ERROR!!🤦‍♂️🤦‍♂️");
                 }
             }
+        }
+    }
+    public void userMenu(){
+        while (true){
+            System.out.println("1 => Create order  2 => Show Orders 0 => Exit");
+            String command = scanStr.nextLine();
+            switch (command){
+                case "1" ->{
+
+                }
+                case "2"->{
+
+                }
+                case "0"->{
+
+                }
+                default -> {
+                    System.out.println(Messages.ERROR);
+                }
+
+            }
+
         }
     }
 
