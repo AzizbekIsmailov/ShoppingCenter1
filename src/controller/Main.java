@@ -2,6 +2,7 @@ package controller;
 
 
 import enumerators.UserRole;
+import exception.DataNotFoundException;
 import model.Category;
 import model.User;
 import service.CategoryService;
@@ -12,6 +13,10 @@ import utils.Messages;
 
 import java.util.Scanner;
 
+import static controller.OrderController.createOrder;
+import static controller.UserController.signIn;
+import static controller.UserController.signUp;
+
 public class Main {
 
     public static Scanner scanStr = new Scanner(System.in);
@@ -21,25 +26,27 @@ public class Main {
     public static ProductService productService = ProductService.getInstance();
     public static OrderService orderService = OrderService.getInstance();
     public static CategoryService categoryService = CategoryService.getInstance();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DataNotFoundException {
         userService.add(new User("123","123",10000, UserRole.ADMIN));
+        userService.add(new User("aziz", "aziz", 1500000, UserRole.ADMIN));
         userService.add(new User("qwe","qwe",150000,UserRole.USER));
         userService.add(new User("asd","asd",200000,UserRole.USER));
 
+        addDefault();
         mainMenu();
 
     }
 
-    private static void mainMenu() {
+    static void mainMenu() throws DataNotFoundException {
         while (true) {
             System.out.println(" 1 => | SignIn | \n 2 => | SignUp | \n 0 => | Exit | \n");
             String command = scanStr.nextLine();
             switch (command) {
                 case "1" -> {
-                    UserController.signIn();
+                    signIn();
                 }
                 case "2" -> {
-                    UserController.signUp();
+                    signUp();
                 }
                 case "0" -> {
                     System.out.println(" BAY - BAY");
@@ -61,7 +68,7 @@ public class Main {
             String command = scanStr.nextLine();
             switch (command) {
                 case "1" -> {
-                    ProductController.showProduct();
+                    ProductController.showProductByCategory();
                 }
                 case "2" -> {
                     ProductController.addProduct();
@@ -70,13 +77,13 @@ public class Main {
                     ProductController.updateProduct();
                 }
                 case "4" -> {
-                    OrderController.updateOrders();
+//                    OrderController.updateOrders();
                 }
                 case "5" -> {
-                    OrderController.showOrders();
+//                    OrderController.showOrders();
                 }
                 case "6" -> {
-                    UserController.blockUser();
+//                    UserController.blockUser();
                 }
                 case "7" -> {
                     UserController.unBlockUser();
@@ -101,13 +108,13 @@ public class Main {
             }
         }
     }
-    public void userMenu(){
+    public static void userMenu(){
         while (true){
             System.out.println("1 => Create order  2 => Show Orders 0 => Exit");
             String command = scanStr.nextLine();
             switch (command){
                 case "1" ->{
-
+                   createOrder();
                 }
                 case "2"->{
 
@@ -123,6 +130,16 @@ public class Main {
 
         }
     }
+
+    private static void addDefault() {
+
+
+        categoryService.add(new Category("Clothes"));
+        categoryService.add(new Category("Shoes"));
+        categoryService.add(new Category("Fruits"));
+
+    }
+
 
 
 }
