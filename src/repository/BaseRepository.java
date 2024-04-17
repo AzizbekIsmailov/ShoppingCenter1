@@ -58,7 +58,4 @@ public abstract class BaseRepository<T extends BaseModel> {
         return list;
     }
 
-    public ArrayList<T> getAll(){
-        return data;
-    }
 }

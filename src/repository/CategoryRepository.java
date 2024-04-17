@@ -8,7 +8,7 @@ import java.util.Objects;
 public class CategoryRepository extends BaseRepository<Category> {
 
 
-    private static CategoryRepository categoryRepository = new CategoryRepository();
+    protected static CategoryRepository categoryRepository = new CategoryRepository();
 
     public static CategoryRepository getInstance(){
         if(Objects.isNull(categoryRepository)){
@@ -17,7 +17,7 @@ public class CategoryRepository extends BaseRepository<Category> {
         return categoryRepository;
     }
 
-    public ArrayList<Category> getAllCategories(){
+    public static ArrayList<Category> getAllCategories(){
       return categoryRepository.data;
     }
 
