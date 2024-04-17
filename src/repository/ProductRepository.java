@@ -26,4 +26,9 @@ public class ProductRepository extends BaseRepository<Product> {
         }
         return products;
     }
+
+    @Override
+    public boolean check(Product product) {
+        return false;
+    }
 }

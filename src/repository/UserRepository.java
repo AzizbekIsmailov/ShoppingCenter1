@@ -1,6 +1,7 @@
 package repository;
 
 import enumerators.UserRole;
+import exception.DataNotFoundException;
 import model.User;
 
 import java.util.ArrayList;
@@ -19,14 +20,13 @@ public class UserRepository extends BaseRepository<User>{
     private UserRepository() {
     }
 
-    public Optional<User> findByUsername(String username) {
-        for (User user : getActives()) {
-            if (Objects.equals(username, user.getUsername())){
-                return Optional.of(user);
+    public User findByUsername(String username) throws DataNotFoundException {
+        for (User user : data) {
+            if (user.getUsername().equals(username)){
+                return user;
             }
         }
-
-        return Optional.empty();
+        throw new DataNotFoundException("User not found ! ");
     }
 
 
@@ -68,14 +68,15 @@ public class UserRepository extends BaseRepository<User>{
 //        }
 //        return users1;
     }
-   public User signIn(String username,String password){
-       for (User user : data) {
-           if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-               return user;
-           }
-       }
-       return null;
-   }
 
 
+    @Override
+    public boolean check(User user) {
+        for (User datum : data) {
+            if(datum.getUsername().equals(user.getUsername())){
+                return true;
+            }
+        }
+        return false;
+    }
 }

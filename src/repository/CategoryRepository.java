@@ -21,6 +21,10 @@ public class CategoryRepository extends BaseRepository<Category> {
     }
 
 
+    @Override
+    public boolean check(Category category) {
+        return false;
+    }
 }
 
 

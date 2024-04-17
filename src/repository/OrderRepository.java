@@ -25,4 +25,8 @@ public class OrderRepository extends BaseRepository<Order> {
         return orders;
     }
 
+    @Override
+    public boolean check(Order order) {
+        return false;
+    }
 }
