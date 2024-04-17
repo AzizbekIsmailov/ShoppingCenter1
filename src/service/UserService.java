@@ -38,4 +38,8 @@ public class UserService extends BaseService<User, UserRepository> {
         return repository.signIn(username, password);
     }
 
+    @Override
+    public boolean check(User user) {
+        return repository.findByUsername(user.getUsername()).isEmpty();
+    }
 }

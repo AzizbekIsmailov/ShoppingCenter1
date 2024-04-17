@@ -2,6 +2,7 @@ package controller;
 
 
 import enumerators.UserRole;
+import model.Category;
 import model.User;
 import service.CategoryService;
 import service.OrderService;
@@ -52,21 +53,21 @@ public class Main {
     }
 
 
-    public void AdminMenu(){
+    public static void adminMenu(){
         while (true) {
             System.out.println(" 1 => | showProduct | \n 2 => | addProduct | \n 3 => | updateProduct | \n " +
                     "4 => | updateOrders | \n 5 => | showOrders | \n 6 => | blockUser | \n" +
-                    " 7 => | unBlockUser | 8 => | showUsers | \n \n 0 => | Exit | \n");
+                    " 7 => | unBlockUser | 8 => | showUsers | \n 9 => | addCategory | \n 10 => | showCategory | \n \n 0 => | Exit | \n");
             String command = scanStr.nextLine();
             switch (command) {
                 case "1" -> {
-                    ProjectController.showProduct();
+                    ProductController.showProduct();
                 }
                 case "2" -> {
-                    ProjectController.addProduct();
+                    ProductController.addProduct();
                 }
                 case "3" -> {
-                    ProjectController.updateProduct();
+                    ProductController.updateProduct();
                 }
                 case "4" -> {
                     OrderController.updateOrders();
@@ -82,6 +83,12 @@ public class Main {
                 }
                 case "8" -> {
                     UserController.showUsers();
+                }
+                case "9" -> {
+                    CategoryController.addCategory();
+                }
+                case "10" -> {
+                    CategoryController.showCategory();
                 }
 
                 case "0" -> {

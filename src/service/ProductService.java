@@ -19,4 +19,9 @@ public class ProductService extends BaseService<Product, ProductRepository> {
     public ArrayList<Product> showCategoryProduct(UUID id){
         return repository.showCategoryProduct(id);
     }
+
+    @Override
+    public boolean check(Product product) {
+        return false;
+    }
 }
