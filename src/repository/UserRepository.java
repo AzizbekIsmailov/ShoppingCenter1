@@ -19,9 +19,9 @@ public class UserRepository extends BaseRepository<User>{
     private UserRepository() {
     }
 
-    public Optional<User> findByUsername(String phone) {
+    public Optional<User> findByUsername(String username) {
         for (User user : getActives()) {
-            if (Objects.equals(phone, user.getUsername())){
+            if (Objects.equals(username, user.getUsername())){
                 return Optional.of(user);
             }
         }
@@ -61,11 +61,12 @@ public class UserRepository extends BaseRepository<User>{
         return 0;
     }
     public ArrayList<User> getAllUsers(){
-        ArrayList<User> users1 = new ArrayList<>();
-        for (User user : data) {
-            users1.add(user);
-        }
-        return users1;
+        return data;
+//        ArrayList<User> users1 = new ArrayList<>();
+//        for (User user : data) {
+//            users1.add(user);
+//        }
+//        return users1;
     }
    public User signIn(String username,String password){
        for (User user : data) {
