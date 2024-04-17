@@ -51,8 +51,5 @@ public class ProductController {
 
     public static void updateProduct() {
         ArrayList<Product> products = showProduct();
-
-
-
     }
 }

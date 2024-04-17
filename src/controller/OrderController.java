@@ -26,7 +26,6 @@ public class OrderController {
         Product selectedProduct = products.get(choice);
         System.out.println("Order created for  : " + selectedProduct.getName());
         return;
-
     }
 
 }
