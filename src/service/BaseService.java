@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public abstract class BaseService <T extends BaseModel,R extends BaseRepository<T>> {
-    protected static final R repository;
+    protected final R repository;
 
     public BaseService(R repository) {
         this.repository = repository;
