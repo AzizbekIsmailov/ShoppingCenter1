@@ -17,4 +17,9 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
     public  ArrayList<Category> getAllCategories(){
         return repository.getAllCategories();
     }
+
+    @Override
+    public boolean check(Category category) {
+        return false;
+    }
 }

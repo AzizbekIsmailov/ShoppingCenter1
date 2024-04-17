@@ -14,9 +14,16 @@ public abstract class BaseService <T extends BaseModel,R extends BaseRepository<
         this.repository = repository;
     }
 
-    public void add(T t) {
+    public boolean add(T t) {
+        if (check(t)){
+            return false;
+        }
+
         repository.add(t);
+        return true;
     }
+
+    public abstract boolean check(T t);
 
     public void delete(UUID id) {
         repository.delete(id);

@@ -20,4 +20,9 @@ public class OrderService extends BaseService<Order, OrderRepository> {
     public ArrayList<Order> getAllUserOrder(UUID userId) {
         return repository.getAllUserOrder(userId);
     }
+
+    @Override
+    public boolean check(Order order) {
+        return false;
+    }
 }
