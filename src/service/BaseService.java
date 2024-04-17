@@ -14,13 +14,8 @@ public abstract class BaseService <T extends BaseModel,R extends BaseRepository<
         this.repository = repository;
     }
 
-    public boolean add(T t) {
-        if (check(t)){
-            return false;
-        }
-
+    public void add(T t) {
         repository.add(t);
-        return true;
     }
 
     public abstract boolean check(T t);

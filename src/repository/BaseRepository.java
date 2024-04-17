@@ -2,6 +2,7 @@ package repository;
 
 import exception.DataNotFoundException;
 import model.BaseModel;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,6 +13,7 @@ public abstract class BaseRepository<T extends BaseModel> {
     protected ArrayList<T> data = new ArrayList<>();
 
     public void add(T t){
+        check(t);
         data.add(t);
     }
 
@@ -70,5 +72,7 @@ public T findById(UUID id) throws DataNotFoundException {
     public ArrayList<T> getAll(){
         return data;
     }
+
+    public abstract boolean check(T t);
 
 }

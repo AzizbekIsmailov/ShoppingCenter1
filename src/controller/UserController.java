@@ -1,6 +1,7 @@
 package controller;
 
 import enumerators.UserRole;
+import exception.DataNotFoundException;
 import model.User;
 import utils.Messages;
 
@@ -10,32 +11,27 @@ import java.util.SortedMap;
 import static controller.Main.*;
 
 public class UserController {
-    public static void signIn() {
-        System.out.println(" Enter Username => ");
+    public static void signIn() throws DataNotFoundException {
+        System.out.println(" Enter Username -> ");
         String username = scanStr.nextLine();
 
-        System.out.println(" Enter Password => ");
+        System.out.println(" Enter Password -> ");
         String password = scanStr.nextLine();
 
-        if(userService.signIn(username, password) != null){
-            if(currentUser.getRole().equals(UserRole.USER)){
-                System.out.println("Welcome => " + username);
-                userMenu();
-            }
+        currentUser = userService.signIn(username, password);
 
-            else {
-                System.out.println("Welcome => " + username);
-                adminMenu();
-            }
-
+        if(currentUser == null){
+            System.out.println("Something went wrong ! ");
+            mainMenu();
         }
-        else{
-            System.out.println(Messages.ERROR);
+        if(currentUser.getRole().equals(UserRole.ADMIN)){
+            adminMenu();
+        } else {
+            userMenu();
         }
     }
 
-    private static void userMenu() {
-    }
+
 
     public static void signUp() {
         System.out.println(" Enter Username => ");
@@ -48,20 +44,19 @@ public class UserController {
         Integer balance = scanNum.nextInt();
 
 
-        if(userService.add(new User(username, password, balance, UserRole.USER))){
-            System.out.println(Messages.SUCCESS);
-        }
-        else {
-            System.out.println("this username already exits!!!");
-        }
+        userService.add(new User(username, password, balance, UserRole.USER));
+//            System.out.println(Messages.SUCCESS);
+//
+//            System.out.println("this username already exits!!!");
+
 
     }
 
     public static ArrayList<User> showUsers() {
         ArrayList<User> users = userService.getAll();
-        int i = 0;
+        int i = 1;
         for (User user : users) {
-            System.out.println(++i + " : " + user.getUsername());
+            System.out.println(i++ + ". " + user.getUsername());
         }
         return users;
     }

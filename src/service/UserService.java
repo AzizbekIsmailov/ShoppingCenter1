@@ -1,5 +1,6 @@
 package service;
 
+import exception.DataNotFoundException;
 import model.User;
 import repository.UserRepository;
 
@@ -17,7 +18,7 @@ public class UserService extends BaseService<User, UserRepository> {
     public UserService() {
         super(UserRepository.getInstance());
     }
-    public Optional<User> findByUsername(String username) {
+    public User findByUsername(String username) throws DataNotFoundException {
         return repository.findByUsername(username);
     }
 
@@ -34,12 +35,18 @@ public class UserService extends BaseService<User, UserRepository> {
     public ArrayList<User> getAllUsers(){
         return repository.getAllUsers();
     }
-    public User signIn(String username,String password){
-        return repository.signIn(username, password);
+
+    public User signIn(String username, String password) throws DataNotFoundException {
+        User user = findByUsername(username);
+        if(user.getUsername().equals(username)
+                && user.getPassword().equals(password)){
+            return user;
+        }
+        return null;
     }
 
     @Override
     public boolean check(User user) {
-        return repository.findByUsername(user.getUsername()).isEmpty();
+        return true;
     }
 }
