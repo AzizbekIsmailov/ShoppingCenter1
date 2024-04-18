@@ -6,6 +6,7 @@ import model.User;
 import utils.Messages;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.SortedMap;
 
 import static controller.Main.*;
@@ -61,27 +62,41 @@ public class UserController {
         return users;
     }
 
-    public static void blockUser() {
-        ArrayList<User> users = userService.getNoBlockedUsers();
+//    public static void blockUser() {
+//        ArrayList<User> users = userService.getNoBlockedUsers();
+//
+//        int i = 0;
+//        for (User user : users) {
+//            System.out.println(++i + " : " + user.getUsername());
+//        }
+//
+//
+//        System.out.print("Enter the number :   And  0 => Exit");
+//
+//        int choice = scanNum.nextInt() - 1;
+//        if(choice == -1){
+//            return;
+//        }
+//        if(choice >= users.size() || choice <= -1){
+//            System.out.println("ERROR!!!");
+//            return;
+//        }
+//        userService.blockOrUnBlockUser(users.get(choice).getId(), false);
+//        System.out.println("USER blocked!!!");
+//    }
+    static void blockUser() {
+    ArrayList<User> users = userService.getNoBlockedUsers();
+    showUsers();
+    System.out.print("Enter the index user for blocking: ");
+    int index = scanNum.nextInt() - 1;
+    try {
+        userService.blockOrUnBlockUser(users.get(index).getId(), true);
+    } catch (InputMismatchException | IndexOutOfBoundsException e) {
+        System.out.println("Went Wrong !!!");
+        return;
+    }
+    System.out.println("USER BLOCKED!!!");
 
-        int i = 0;
-        for (User user : users) {
-            System.out.println(++i + " : " + user.getUsername());
-        }
-
-
-        System.out.print("Enter the number :   And 0 => Exit");
-
-        int choice = scanNum.nextInt() - 1;
-        if(choice == -1){
-            return;
-        }
-        if(choice >= users.size() || choice <= -1){
-            System.out.println("ERROR!!!");
-            return;
-        }
-        userService.blockOrUnBlockUser(users.get(choice).getId(), false);
-        System.out.println("USER blocked!!!");
     }
 
     public static void unBlockUser() {
