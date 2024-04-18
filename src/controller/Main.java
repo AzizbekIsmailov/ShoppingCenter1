@@ -129,7 +129,8 @@ public class Main {
 
                 }
                 case "0"->{
-
+                    System.out.println("Bye bye !!!");
+                    return;
                 }
                 default -> {
                     System.out.println(Messages.ERROR);
