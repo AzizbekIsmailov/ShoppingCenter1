@@ -46,7 +46,12 @@ public class UserService extends BaseService<User, UserRepository> {
     }
 
     @Override
-    public boolean check(User user) {
-        return true;
+    public boolean check(User user) throws DataNotFoundException {
+        if(repository.findByUsername(user.getUsername()) == null ){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

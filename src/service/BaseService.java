@@ -18,7 +18,7 @@ public abstract class BaseService <T extends BaseModel,R extends BaseRepository<
         repository.add(t);
     }
 
-    public abstract boolean check(T t);
+    public abstract boolean check(T t) throws DataNotFoundException;
 
     public void delete(UUID id) {
         repository.delete(id);

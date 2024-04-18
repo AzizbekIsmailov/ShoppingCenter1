@@ -13,7 +13,7 @@ public class ProductController {
 
     public static void showProductByCategory(){
         ArrayList<Category> categories = showCategory();
-        System.out.println("Choose one -> | 0 -> Exit");
+        System.out.println("Choose one -> | 0 -> Exit => ");
         int index = scanNum.nextInt() - 1;
 
         showProduct(categories.get(index).getId());
@@ -35,7 +35,7 @@ public class ProductController {
     public static void addProduct() {
         ArrayList<Category> categories = showCategory();
 
-        System.out.print("Choose one -> | 0 -> Exit");
+        System.out.print("Choose one -> | 0 -> Exit => ");
         int choice = scanNum.nextInt() - 1;
         if(choice == -1){
             return;
@@ -45,10 +45,10 @@ public class ProductController {
             return;
         }
 
-        System.out.println(" Enter Name -> ");
+        System.out.print(" Enter Name -> ");
         String name = scanStr.nextLine();
 
-        System.out.println(" Enter Price -> ");
+        System.out.print(" Enter Price -> ");
         Integer price = scanNum.nextInt();
 
         productService.add(new Product(name,price,categories.get(choice).getId()));
