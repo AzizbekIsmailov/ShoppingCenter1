@@ -7,7 +7,6 @@ import utils.Messages;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.SortedMap;
 
 import static controller.Main.*;
 
@@ -82,9 +81,17 @@ public class UserController {
 //    }
     static void blockUser() {
     ArrayList<User> users = userService.getNoBlockedUsers();
-    showUsers();
-    System.out.print("Enter the index user for blocking: ");
+    int i = 0;
+        for (User user : users) {
+            System.out.println(++i + " : " + user.getUsername());
+        }
+    System.out.print("Enter the number :   And  0 => Exit => ");
     int index = scanNum.nextInt() - 1;
+
+        if(index == -1){
+            return;
+        }
+
     try {
         userService.blockOrUnBlockUser(users.get(index).getId(), true);
     } catch (InputMismatchException | IndexOutOfBoundsException e) {

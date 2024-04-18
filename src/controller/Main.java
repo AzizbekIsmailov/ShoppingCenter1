@@ -40,8 +40,6 @@ public class Main {
         categoryService.add(new Category("MASHINALAR"));
 
 
-
-        addDefault();
         mainMenu();
 
     }
@@ -139,15 +137,6 @@ public class Main {
             }
 
         }
-    }
-
-    private static void addDefault() {
-
-
-        categoryService.add(new Category("Clothes"));
-        categoryService.add(new Category("Shoes"));
-        categoryService.add(new Category("Fruits"));
-
     }
 
 
