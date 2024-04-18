@@ -77,13 +77,13 @@ public class Main {
                     ProductController.updateProduct();
                 }
                 case "4" -> {
-//                    OrderController.updateOrders();
+//                   OrderController.updateOrders();
                 }
                 case "5" -> {
 //                    OrderController.showOrders();
                 }
                 case "6" -> {
-//                    UserController.blockUser();
+                   UserController.blockUser();
                 }
                 case "7" -> {
                     UserController.unBlockUser();
@@ -120,7 +120,8 @@ public class Main {
 
                 }
                 case "0"->{
-
+                    System.out.println("Bye bye !!!");
+                    return;
                 }
                 default -> {
                     System.out.println(Messages.ERROR);
