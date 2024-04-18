@@ -10,7 +10,7 @@ import static controller.Main.scanStr;
 public class CategoryController {
 
     public static void addCategory(){
-        System.out.println("Enter category name -> ");
+        System.out.print("Enter category name -> ");
         String name = scanStr.nextLine();
 
         categoryService.add(new Category(name));

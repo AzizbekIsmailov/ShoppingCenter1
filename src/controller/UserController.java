@@ -7,16 +7,15 @@ import utils.Messages;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.SortedMap;
 
 import static controller.Main.*;
 
 public class UserController {
     public static void signIn() throws DataNotFoundException {
-        System.out.println(" Enter Username -> ");
+        System.out.print(" Enter Username -> ");
         String username = scanStr.nextLine();
 
-        System.out.println(" Enter Password -> ");
+        System.out.print(" Enter Password -> ");
         String password = scanStr.nextLine();
 
         currentUser = userService.signIn(username, password);
@@ -35,22 +34,18 @@ public class UserController {
 
 
     public static void signUp() {
-        System.out.println(" Enter Username => ");
+        System.out.print(" Enter Username => ");
         String username = scanStr.nextLine();
 
-        System.out.println(" Enter Password => ");
+        System.out.print(" Enter Password => ");
         String password = scanStr.nextLine();
 
-        System.out.println(" Enter Balance => ");
+        System.out.print(" Enter Balance => ");
         Integer balance = scanNum.nextInt();
 
 
         userService.add(new User(username, password, balance, UserRole.USER));
-//            System.out.println(Messages.SUCCESS);
-//
-//            System.out.println("this username already exits!!!");
-
-
+            System.out.println(Messages.SUCCESS);
     }
 
     public static ArrayList<User> showUsers() {
@@ -86,9 +81,17 @@ public class UserController {
 //    }
     static void blockUser() {
     ArrayList<User> users = userService.getNoBlockedUsers();
-    showUsers();
-    System.out.print("Enter the index user for blocking: ");
+    int i = 0;
+        for (User user : users) {
+            System.out.println(++i + " : " + user.getUsername());
+        }
+    System.out.print("Enter the number :   And  0 => Exit => ");
     int index = scanNum.nextInt() - 1;
+
+        if(index == -1){
+            return;
+        }
+
     try {
         userService.blockOrUnBlockUser(users.get(index).getId(), true);
     } catch (InputMismatchException | IndexOutOfBoundsException e) {
@@ -107,7 +110,7 @@ public class UserController {
         }
 
 
-        System.out.print("Enter the number :   And 0 => Exit");
+        System.out.print("Enter the number :   And 0 => Exit => ");
 
         int choice = scanNum.nextInt() - 1;
         if(choice == -1){

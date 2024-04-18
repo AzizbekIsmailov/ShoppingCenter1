@@ -4,6 +4,7 @@ package controller;
 import enumerators.UserRole;
 import exception.DataNotFoundException;
 import model.Category;
+import model.Product;
 import model.User;
 import service.CategoryService;
 import service.OrderService;
@@ -32,7 +33,13 @@ public class Main {
         userService.add(new User("qwe","qwe",150000,UserRole.USER));
         userService.add(new User("asd","asd",200000,UserRole.USER));
 
-        addDefault();
+
+        categoryService.add(new Category("BOLALAR KIYIMLARI"));
+        categoryService.add(new Category("SMARTFONLAR"));
+        categoryService.add(new Category("KOMPYUTERLAR"));
+        categoryService.add(new Category("MASHINALAR"));
+
+
         mainMenu();
 
     }
@@ -64,7 +71,7 @@ public class Main {
         while (true) {
             System.out.println(" 1 => | showProduct | \n 2 => | addProduct | \n 3 => | updateProduct | \n " +
                     "4 => | updateOrders | \n 5 => | showOrders | \n 6 => | blockUser | \n" +
-                    " 7 => | unBlockUser | 8 => | showUsers | \n 9 => | addCategory | \n 10 => | showCategory | \n \n 0 => | Exit | \n");
+                    " 7 => | unBlockUser | \n 8 => | showUsers | \n 9 => | addCategory | \n 10 => | showCategory | \n \n 0 => | Exit | \n");
             String command = scanStr.nextLine();
             switch (command) {
                 case "1" -> {
@@ -77,13 +84,13 @@ public class Main {
                     ProductController.updateProduct();
                 }
                 case "4" -> {
-//                   OrderController.updateOrders();
+                    OrderController.updateOrders();
                 }
                 case "5" -> {
-//                    OrderController.showOrders();
+                    OrderController.showOrders();
                 }
                 case "6" -> {
-                   UserController.blockUser();
+                    UserController.blockUser();
                 }
                 case "7" -> {
                     UserController.unBlockUser();
@@ -130,15 +137,6 @@ public class Main {
             }
 
         }
-    }
-
-    private static void addDefault() {
-
-
-        categoryService.add(new Category("Clothes"));
-        categoryService.add(new Category("Shoes"));
-        categoryService.add(new Category("Fruits"));
-
     }
 
 
